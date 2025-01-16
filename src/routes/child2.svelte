@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { counter } from '$lib/counter.svelte';
 
-	const count = counter.get();
-
 	let value = $state(8);
 
     counter.update(() => value);
