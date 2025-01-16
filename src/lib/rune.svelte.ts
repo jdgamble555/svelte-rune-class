@@ -11,10 +11,6 @@ export class Rune<TRune> {
         this.#key = Symbol(name);
     }
 
-    get key(): symbol {
-        return this.#key;
-    }
-
     exists(): boolean {
         return hasContext(this.#key);
     }
@@ -23,13 +19,7 @@ export class Rune<TRune> {
         return getContext(this.#key);
     }
 
-    getOr<TFallback>(fallback: TFallback): RCurrent<TRune> | TFallback {
-        return this.exists()
-            ? this.get()
-            : fallback;
-    }
-
-    set(value: TRune): RCurrent<TRune> {
+    init(value: TRune): RCurrent<TRune> {
         const _value = $state({ current: value });
         return setContext(this.#key, _value);
     }
