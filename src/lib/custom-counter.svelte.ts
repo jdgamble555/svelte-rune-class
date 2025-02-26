@@ -1,4 +1,4 @@
-import { getContext, hasContext, setContext } from "svelte";
+import { SharedClass } from "./shared-class.svelte";
 
 
 class MyCounter {
@@ -19,28 +19,4 @@ class MyCounter {
 }
 
 
-// add SSR protection with Context
-export class _Counter {
-
-    readonly #key: symbol;
-
-    constructor(name: string) {
-        this.#key = Symbol(name);
-    }
-
-    exists(): boolean {
-        return hasContext(this.#key);
-    }
-
-    get(): MyCounter {
-        return getContext(this.#key);
-    }
-
-    init(initialNumber: number): MyCounter {
-        // initialize any class here
-        const _value = new MyCounter(initialNumber);
-        return setContext(this.#key, _value);
-    }
-}
-
-export const useCustomCounter = new _Counter('counter');
+export const useCustomCounter = new SharedClass('counter', MyCounter);
