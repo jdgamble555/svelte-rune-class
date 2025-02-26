@@ -18,5 +18,4 @@ class MyCounter {
     }
 }
 
-
 export const useCustomCounter = new SharedClass('counter', MyCounter);

@@ -3,7 +3,7 @@ import { getContext, hasContext, setContext } from "svelte";
 type Constructor<T, Args extends unknown[]> = new (...args: Args) => T;
 
 
-export class SharedClass<T, Args extends unknown[] = []> {
+export class SharedClass<T, Args extends unknown[]> {
 
     readonly #key: symbol;
     #class: Constructor<T, Args>;
@@ -21,8 +21,8 @@ export class SharedClass<T, Args extends unknown[] = []> {
         return getContext(this.#key);
     }
 
-    init(...args: Args | [Args extends [] ? never : Args]): T {
-        const _value = new this.#class(...(args as Args));
+    init(...args: Args): T {
+        const _value = new this.#class(...args);
         return setContext(this.#key, _value);
     }
 }
