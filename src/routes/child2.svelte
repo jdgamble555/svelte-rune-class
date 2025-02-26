@@ -8,5 +8,6 @@
 
 <h1>Hello from Child2: {value}</h1>
 
-
-<button type="button" onclick={() => value++}> Update From Another State</button>
+<button type="button" onclick={() => value++}> 
+	Update From Another State
+</button>
